@@ -25,8 +25,10 @@ class ReposViewModel : ViewModel() {
     }
 
     fun loadTrendingRepos() {
-        if (!AppUtils.isOnline(AppController.instance()))
+        if (!AppUtils.isOnline(AppController.instance())) {
             repoList.postValue(ResourceState.error("No internet connection", null))
+            return
+        }
 
         repoList.postValue(ResourceState.loading(null))
 
