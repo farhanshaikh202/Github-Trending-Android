@@ -4,21 +4,30 @@ import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.farhanapps.githubtrending.AppController
 import com.farhanapps.githubtrending.data.api.API
 import com.farhanapps.githubtrending.data.api.ApiCallback
 import com.farhanapps.githubtrending.data.model.ApiResponseModel
 import com.farhanapps.githubtrending.data.model.RepoModel
+import com.farhanapps.githubtrending.utils.AppUtils
 import com.farhanapps.githubtrending.utils.ResourceState
 
 class ReposViewModel : ViewModel() {
+    private var repoList = MutableLiveData<ResourceState<ArrayList<RepoModel>>>()
 
-    private val repoList = MutableLiveData<ResourceState<ArrayList<RepoModel>>>()
+    init {
+        repoList = MutableLiveData<ResourceState<ArrayList<RepoModel>>>()
+        loadTrendingRepos()
+    }
 
     fun getRepoList(): LiveData<ResourceState<ArrayList<RepoModel>>> {
         return repoList
     }
 
     fun loadTrendingRepos() {
+        if (!AppUtils.isOnline(AppController.instance()))
+            repoList.postValue(ResourceState.error("No internet connection", null))
+
         repoList.postValue(ResourceState.loading(null))
 
         API.get().getTrendingRepos("daily").enqueue(

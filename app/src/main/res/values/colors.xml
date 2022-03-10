@@ -10,6 +10,7 @@
     <color name="theme_blue">#0969da</color>
     <color name="theme_grey">#57606a</color>
 
+    <color name="blue_alpha">#270969DA</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

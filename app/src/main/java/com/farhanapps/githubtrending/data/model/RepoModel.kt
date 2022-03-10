@@ -9,4 +9,5 @@ data class RepoModel(
     val forks: String,
     val added_stars: String,
     val avatars: ArrayList<String>,
+    var isSelected: Boolean = false
 )

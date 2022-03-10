@@ -47,6 +47,7 @@
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/main_repo_fragment"
         android:name="com.farhanapps.githubtrending.ui.view.ReposFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

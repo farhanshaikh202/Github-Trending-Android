@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:foreground="?selectableItemBackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="8dp">
+
+        <LinearLayout
+            android:id="@+id/repo_item_title_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/repo_item_icon_img"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="4dp"
+                app:srcCompat="@drawable/ic_repo_icon" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/repo_item_title_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:text="Arinerron / CVE-2022-0847-DirtyPipe-Exploit"
+                android:textAppearance="@style/TextAppearance.Material3.DisplayLarge"
+                android:textColor="@color/theme_blue"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/repo_item_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/repo_item_title_view"
+            android:layout_marginTop="4dp"
+            android:text="Description"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            android:textSize="14sp" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/repo_item_specs_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/repo_item_desc"
+            android:layout_marginTop="6dp"
+            android:orientation="horizontal"
+            app:flexWrap="wrap">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/repo_item_lang_text"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginRight="16dp"
+                android:gravity="center"
+                android:text="JAVA"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                android:textColor="@color/theme_grey"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/repo_item_stars_all_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:drawablePadding="4dp"
+                android:gravity="center"
+                android:text="345"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                android:textColor="@color/theme_grey"
+                android:textSize="14sp"
+                app:drawableLeftCompat="@drawable/ic_round_star_border_24"
+                app:drawableTint="@color/theme_grey" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/repo_item_forks_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:drawablePadding="4dp"
+                android:gravity="center"
+                android:text="5456"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                android:textColor="@color/theme_grey"
+                android:textSize="14sp"
+                app:drawableLeftCompat="@drawable/ic_round_fork_right_24"
+                app:drawableTint="@color/theme_grey" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/repo_item_stars_today_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="4dp"
+                android:gravity="center"
+                android:text="345 today"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                android:textColor="@color/theme_grey"
+                android:textSize="14sp"
+                app:drawableLeftCompat="@drawable/ic_round_star_border_24"
+                app:drawableTint="@color/theme_grey" />
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/repo_item_specs_view"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Built by"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                android:textColor="@color/theme_grey"
+                android:textSize="14sp" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_gravity="bottom"
+        android:alpha="0.4"
+        android:background="@color/theme_grey" />
+</FrameLayout>
