@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
@@ -114,6 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/repo_item_specs_view"
             android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -125,10 +127,15 @@
                 android:textColor="@color/theme_grey"
                 android:textSize="14sp" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/repo_item_built_by_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:clickable="false"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/avatar_item" />
 
         </LinearLayout>
     </RelativeLayout>

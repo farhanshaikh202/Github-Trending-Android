@@ -2,11 +2,13 @@ package com.farhanapps.githubtrending.ui.viewholder
 
 import android.graphics.Color
 import android.text.Html
+import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import androidx.recyclerview.widget.RecyclerView
 import com.farhanapps.githubtrending.R
 import com.farhanapps.githubtrending.data.model.RepoModel
 import com.farhanapps.githubtrending.databinding.RepoCardItemLayoutBinding
+import com.farhanapps.githubtrending.ui.adapter.AvatarRvAdapter
 import com.farhanapps.githubtrending.ui.adapter.ReposRvAdapter
 
 class RepoViewHolder(private val binding: RepoCardItemLayoutBinding) :
@@ -21,6 +23,8 @@ class RepoViewHolder(private val binding: RepoCardItemLayoutBinding) :
         binding.repoItemStarsTodayText.text = repo.added_stars
         binding.repoItemForksText.text = repo.forks
 
+        binding.repoItemBuiltByRv.adapter = AvatarRvAdapter(repo.avatars)
+
         binding.repoItemIconImg.setImageResource(if (repo.isSelected) R.drawable.ic_baseline_check_circle_24 else R.drawable.ic_repo_icon)
         binding.repoItemDesc.isGone = repo.desc.isEmpty()
         binding.repoItemLangText.isGone = repo.lang.isEmpty()
@@ -28,7 +32,12 @@ class RepoViewHolder(private val binding: RepoCardItemLayoutBinding) :
         binding.repoItemStarsTodayText.isGone = repo.added_stars.isEmpty()
         binding.repoItemForksText.isGone = repo.forks.isEmpty()
 
-        binding.root.setBackgroundColor(if (repo.isSelected) context.getColor(R.color.blue_alpha) else Color.WHITE)
+        binding.root.setBackgroundColor(
+            if (repo.isSelected) ContextCompat.getColor(
+                context,
+                R.color.blue_alpha
+            ) else Color.WHITE
+        )
 
         binding.root.setOnClickListener {
             repo.isSelected = !repo.isSelected
