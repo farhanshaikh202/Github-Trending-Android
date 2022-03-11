@@ -9,8 +9,8 @@ The App is based on MVVM architecture and uses LiveData and ViewModel for better
 allows user to select multiple rows to share the url.
 
 ### Screenshots
-
-| ![SS1](screenshots/ss1.png) | ![SS2](screenshots/ss2.png) |
+:-------------------------:|:-------------------------:
+![SS1](screenshots/ss1.png) | ![SS2](screenshots/ss2.png)
 
 ### Developer 🧑‍💻
 
