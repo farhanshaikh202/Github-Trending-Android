@@ -1,6 +1,6 @@
 # Github-Trending-Android
 
-#### An android App for Gitub Trending Repos.
+#### An android App for Github Trending Repos.
 
 This is the Demo App which fetches the list of **Github trending repositories** from
 the [API](https://github.com/doforce/github-trending) and displays in the RecyclerView.
