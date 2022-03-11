@@ -1,6 +1,5 @@
 package com.farhanapps.githubtrending.ui.viewmodel
 
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -20,7 +19,10 @@ class ReposViewModel : ViewModel() {
 
     init {
         repoList = MutableLiveData<ResourceState<ArrayList<RepoModel>>>()
-        loadTrendingRepos()
+        try {
+            loadTrendingRepos()
+        } catch (e: Exception) {
+        }
     }
 
     fun getRepoList(): LiveData<ResourceState<ArrayList<RepoModel>>> {
@@ -40,7 +42,6 @@ class ReposViewModel : ViewModel() {
         if (existingModel == null)
             selectedRepoList.add(repoModel)
         else selectedRepoList.remove(repoModel)
-        Log.e("TAG", "selectOrRemoveRepo: ${selectedRepoList.size}")
     }
 
     fun refreshData() {

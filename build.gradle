@@ -16,3 +16,10 @@ buildscript {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+// Define versions in a single place
+ext {
+    // App dependencies
+    junitVersion = '4.13.2'
+    mockitoVersion = '4.4.0'
+}
