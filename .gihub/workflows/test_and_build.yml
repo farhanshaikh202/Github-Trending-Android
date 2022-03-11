@@ -36,7 +36,7 @@ jobs:
           cache: gradle
 
       - name: Grant execute permission for gradlew
-          run: chmod +x gradlew
+        run: chmod +x gradlew
 
       ## Build all our Build Types at once ##
       - name: Build all artifacts
