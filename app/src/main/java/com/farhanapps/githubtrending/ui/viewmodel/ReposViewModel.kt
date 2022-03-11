@@ -1,5 +1,6 @@
 package com.farhanapps.githubtrending.ui.viewmodel
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,7 +14,9 @@ import com.farhanapps.githubtrending.utils.AppUtils
 import com.farhanapps.githubtrending.utils.ResourceState
 
 class ReposViewModel : ViewModel() {
+    private lateinit var originalData: List<RepoModel>
     private var repoList = MutableLiveData<ResourceState<ArrayList<RepoModel>>>()
+    private var selectedRepoList = ArrayList<RepoModel>()
 
     init {
         repoList = MutableLiveData<ResourceState<ArrayList<RepoModel>>>()
@@ -22,6 +25,27 @@ class ReposViewModel : ViewModel() {
 
     fun getRepoList(): LiveData<ResourceState<ArrayList<RepoModel>>> {
         return repoList
+    }
+
+    fun getSelectedRepos(): ArrayList<RepoModel> {
+        return selectedRepoList
+    }
+
+    fun isSelected(repo: RepoModel): Boolean {
+        return selectedRepoList.contains(repo)
+    }
+
+    fun selectOrRemoveRepo(repoModel: RepoModel) {
+        val existingModel = selectedRepoList.find { it.repo == repoModel.repo }
+        if (existingModel == null)
+            selectedRepoList.add(repoModel)
+        else selectedRepoList.remove(repoModel)
+        Log.e("TAG", "selectOrRemoveRepo: ${selectedRepoList.size}")
+    }
+
+    fun refreshData() {
+        selectedRepoList.clear()
+        repoList.postValue(ResourceState.success(data = ArrayList(originalData)))
     }
 
     fun loadTrendingRepos() {
@@ -40,7 +64,8 @@ class ReposViewModel : ViewModel() {
                     }
                     data?.let { data ->
                         data.items?.let {
-                            repoList.postValue(ResourceState.success(data = ArrayList(it)))
+                            originalData = it
+                            refreshData()
                         }
                     }
                 }

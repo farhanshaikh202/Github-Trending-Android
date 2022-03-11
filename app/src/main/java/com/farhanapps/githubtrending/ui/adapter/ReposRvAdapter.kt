@@ -6,10 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.farhanapps.githubtrending.data.model.RepoModel
 import com.farhanapps.githubtrending.databinding.RepoCardItemLayoutBinding
 import com.farhanapps.githubtrending.ui.viewholder.RepoViewHolder
+import com.farhanapps.githubtrending.ui.viewmodel.ReposViewModel
+import com.farhanapps.githubtrending.utils.interfaces.OnItemClickListener
 
 class ReposRvAdapter : RecyclerView.Adapter<RepoViewHolder>() {
 
+    private var listener: OnItemClickListener<RepoModel>? = null
     private val data = ArrayList<RepoModel>()
+    private lateinit var viewModel: ReposViewModel
 
     fun setData(list: List<RepoModel>) {
         data.clear()
@@ -24,10 +28,21 @@ class ReposRvAdapter : RecyclerView.Adapter<RepoViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RepoViewHolder, position: Int) {
-        holder.bind(position, data[position], this)
+        holder.bind(position, data[position], viewModel)
+        holder.itemView.setOnClickListener {
+            listener?.onItemClick(position, data[position])
+        }
     }
 
     override fun getItemCount(): Int {
         return data.size
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener<RepoModel>) {
+        this.listener = listener
+    }
+
+    fun setViewModel(viewModel: ReposViewModel) {
+        this.viewModel = viewModel
     }
 }

@@ -9,13 +9,14 @@ import com.farhanapps.githubtrending.R
 import com.farhanapps.githubtrending.data.model.RepoModel
 import com.farhanapps.githubtrending.databinding.RepoCardItemLayoutBinding
 import com.farhanapps.githubtrending.ui.adapter.AvatarRvAdapter
-import com.farhanapps.githubtrending.ui.adapter.ReposRvAdapter
+import com.farhanapps.githubtrending.ui.viewmodel.ReposViewModel
 
 class RepoViewHolder(private val binding: RepoCardItemLayoutBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(position: Int, repo: RepoModel, reposRvAdapter: ReposRvAdapter) {
+    fun bind(position: Int, repo: RepoModel, viewModel: ReposViewModel) {
         val context = binding.root.context
+        val isSelected = viewModel.isSelected(repo)
         binding.repoItemTitleText.text = Html.fromHtml(repo.repo.replace("/", "/<b>") + "</b>")
         binding.repoItemDesc.text = repo.desc
         binding.repoItemLangText.text = repo.lang
@@ -25,7 +26,7 @@ class RepoViewHolder(private val binding: RepoCardItemLayoutBinding) :
 
         binding.repoItemBuiltByRv.adapter = AvatarRvAdapter(repo.avatars)
 
-        binding.repoItemIconImg.setImageResource(if (repo.isSelected) R.drawable.ic_baseline_check_circle_24 else R.drawable.ic_repo_icon)
+        binding.repoItemIconImg.setImageResource(if (isSelected) R.drawable.ic_baseline_check_circle_24 else R.drawable.ic_repo_icon)
         binding.repoItemDesc.isGone = repo.desc.isEmpty()
         binding.repoItemLangText.isGone = repo.lang.isEmpty()
         binding.repoItemStarsAllText.isGone = repo.stars.isEmpty()
@@ -33,15 +34,11 @@ class RepoViewHolder(private val binding: RepoCardItemLayoutBinding) :
         binding.repoItemForksText.isGone = repo.forks.isEmpty()
 
         binding.root.setBackgroundColor(
-            if (repo.isSelected) ContextCompat.getColor(
+            if (isSelected) ContextCompat.getColor(
                 context,
                 R.color.blue_alpha
             ) else Color.WHITE
         )
 
-        binding.root.setOnClickListener {
-            repo.isSelected = !repo.isSelected
-            reposRvAdapter.notifyItemChanged(position)
-        }
     }
 }

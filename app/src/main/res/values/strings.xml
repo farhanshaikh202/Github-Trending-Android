@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Github Trending</string>
+    <string name="share">Share</string>
+    <string name="content_description_share">Share link</string>
 </resources>
