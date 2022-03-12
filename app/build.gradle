@@ -36,6 +36,12 @@ android {
     }
 }
 
+android.applicationVariants.all { variant ->
+    variant.outputs.all {
+        outputFileName = "app-${variant.buildType.name}-${variant.versionName}.apk"
+    }
+}
+
 dependencies {
     implementation "androidx.multidex:multidex:2.0.1"
 

@@ -10,6 +10,7 @@ import com.farhanapps.githubtrending.data.model.RepoModel
 import com.farhanapps.githubtrending.databinding.RepoCardItemLayoutBinding
 import com.farhanapps.githubtrending.ui.adapter.AvatarRvAdapter
 import com.farhanapps.githubtrending.ui.viewmodel.ReposViewModel
+import com.farhanapps.githubtrending.utils.extensions.highlight
 
 class RepoViewHolder(private val binding: RepoCardItemLayoutBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -17,6 +18,7 @@ class RepoViewHolder(private val binding: RepoCardItemLayoutBinding) :
     fun bind(position: Int, repo: RepoModel, viewModel: ReposViewModel) {
         val context = binding.root.context
         val isSelected = viewModel.isSelected(repo)
+        val query = viewModel.filterQuery
         binding.repoItemTitleText.text = Html.fromHtml(repo.repo.replace("/", "/<b>") + "</b>")
         binding.repoItemDesc.text = repo.desc
         binding.repoItemLangText.text = repo.lang
@@ -26,6 +28,9 @@ class RepoViewHolder(private val binding: RepoCardItemLayoutBinding) :
 
         binding.repoItemBuiltByRv.adapter = AvatarRvAdapter(repo.avatars)
 
+        if (query.isNotEmpty())
+            binding.repoItemTitleText.highlight(query, "#fd8c73")
+        binding.repoItemDesc.highlight(query, "#fd8c73")
         binding.repoItemIconImg.setImageResource(if (isSelected) R.drawable.ic_baseline_check_circle_24 else R.drawable.ic_repo_icon)
         binding.repoItemDesc.isGone = repo.desc.isEmpty()
         binding.repoItemLangText.isGone = repo.lang.isEmpty()

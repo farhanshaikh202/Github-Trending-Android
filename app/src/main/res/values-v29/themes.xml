@@ -20,5 +20,9 @@
         <item name="actionModeCloseDrawable">@drawable/ic_baseline_close_24</item>
         <item name="actionBarTheme">@style/ThemeOverlay.MaterialComponents.Dark.ActionBar</item>
 
+        <item name="toolbarStyle">@style/Widget.App.Toolbar</item>
+
+        <item name="searchViewStyle">@style/MySearchViewStyle</item>
+        <item name="autoCompleteTextViewStyle">@style/SearchAutoCompleteTextView</item>
     </style>
 </resources>

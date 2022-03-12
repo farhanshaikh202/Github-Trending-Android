@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun onDestroyActionMode(mode: ActionMode?) {
+            viewModel.clearSelection()
             viewModel.refreshData()
             actionMode = null
         }
