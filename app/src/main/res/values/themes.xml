@@ -18,6 +18,20 @@
         <item name="actionModeCloseDrawable">@drawable/ic_baseline_close_24</item>
         <item name="actionBarTheme">@style/ThemeOverlay.MaterialComponents.Dark.ActionBar</item>
 
+        <item name="toolbarStyle">@style/Widget.App.Toolbar</item>
+
+        <item name="searchViewStyle">@style/MySearchViewStyle</item>
+        <item name="autoCompleteTextViewStyle">@style/SearchAutoCompleteTextView</item>
+    </style>
+
+    <style name="Widget.App.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Toolbar</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Toolbar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
     </style>
 
     <style name="Widget.App.ActionMode" parent="Widget.AppCompat.ActionMode">
@@ -29,4 +43,30 @@
     <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
         <item name="cornerSize">50%</item>
     </style>
+
+    <style name="SearchAutoCompleteTextView" parent="Widget.AppCompat.AutoCompleteTextView">
+        <item name="android:editTextColor">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+    </style>
+
+    <style name="MySearchViewStyle" parent="Widget.AppCompat.Light.SearchView">
+        <!-- Background for the search query section (e.g. EditText) -->
+        <item name="queryBackground">@color/primary</item>
+        <!-- Background for the actions section (e.g. voice, submit) -->
+        <!--        <item name="submitBackground">@color/white</item>-->
+        <!-- Close button icon -->
+        <!--        <item name="closeIcon">@color/black</item>-->
+        <!-- Search button icon -->
+        <!--        <item name="searchIcon">@color/black</item>-->
+        <!-- Go/commit button icon -->
+        <!--        <item name="goIcon">@color/black</item>-->
+        <!-- Voice search button icon -->
+        <!--        <item name="voiceIcon">@color/black</item>-->
+        <!-- Commit icon shown in the query suggestion row -->
+        <!--        <item name="commitIcon">@color/black</item>-->
+        <!-- Layout for query suggestion rows -->
+        <!--        <item name="suggestionRowLayout">...</item>-->
+    </style>
+
 </resources>

@@ -46,11 +46,38 @@
 
     </com.google.android.material.tabs.TabLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/main_search_til"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_tab_layout"
+        android:layout_marginTop="4dp"
+        android:enabled="false"
+        android:hint="@string/search_hint"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="4dp"
+        app:boxStrokeWidth="0.5dp"
+        app:boxStrokeWidthFocused="1dp"
+        app:endIconDrawable="@drawable/ic_baseline_close_24"
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/ic_baseline_search_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/main_search_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:textSize="14sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/main_repo_fragment"
         android:name="com.farhanapps.githubtrending.ui.view.ReposFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/main_tab_layout" />
+        android:layout_below="@id/main_search_til" />
 
 </RelativeLayout>

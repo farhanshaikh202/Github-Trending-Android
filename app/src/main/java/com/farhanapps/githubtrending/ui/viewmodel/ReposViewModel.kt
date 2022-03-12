@@ -13,7 +13,8 @@ import com.farhanapps.githubtrending.utils.AppUtils
 import com.farhanapps.githubtrending.utils.ResourceState
 
 class ReposViewModel : ViewModel() {
-    private lateinit var originalData: List<RepoModel>
+    var filterQuery: String = ""
+    private var originalData: List<RepoModel> = ArrayList()
     private var repoList = MutableLiveData<ResourceState<ArrayList<RepoModel>>>()
     private var selectedRepoList = ArrayList<RepoModel>()
 
@@ -44,9 +45,25 @@ class ReposViewModel : ViewModel() {
         else selectedRepoList.remove(repoModel)
     }
 
-    fun refreshData() {
+    fun clearSelection() {
         selectedRepoList.clear()
-        repoList.postValue(ResourceState.success(data = ArrayList(originalData)))
+    }
+
+    fun clearFilter() {
+        filterQuery = ""
+    }
+
+    fun refreshData() {
+        if (filterQuery.isEmpty())
+            repoList.postValue(ResourceState.success(data = ArrayList(originalData)))
+        else
+            filter(filterQuery)
+    }
+
+    fun filter(query: String) {
+        filterQuery = query
+        val filtered = originalData.filter { it.repo.contains(query) || it.desc.contains(query) }
+        repoList.postValue(ResourceState.success(data = ArrayList(filtered)))
     }
 
     fun loadTrendingRepos() {
@@ -66,6 +83,7 @@ class ReposViewModel : ViewModel() {
                     data?.let { data ->
                         data.items?.let {
                             originalData = it
+                            clearSelection()
                             refreshData()
                         }
                     }
