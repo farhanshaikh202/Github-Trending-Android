@@ -2,6 +2,8 @@ name: Test and Build
 
 on:
   push:
+    tags:
+      - 'v*'
     branches: [ master ]
     pull_request:
       branches: [ master ]
@@ -57,7 +59,8 @@ jobs:
 
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
+        #        uses: actions/create-release@v1
+        uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
